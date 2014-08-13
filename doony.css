@@ -606,6 +606,15 @@ textarea {
   background-image: none !important;
 }
 
+/********************   block styles    ***********************/
+#main-panel {
+  width: 80%;
+}
+
+#side-panel {
+  width: 20%;
+}
+
 /********************   top panel styles      ***********************/
 .yui-skin-sam #top-panel {
   background-url: none;
@@ -626,7 +635,7 @@ textarea {
 #tasks {
   margin-top: 5px;
   font-size: 14px;
-  margin-right: 30px;
+  margin-right: 0;
   padding-left: 0;
 }
 
