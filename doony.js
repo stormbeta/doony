@@ -449,15 +449,6 @@ jQuery(function($) {
     var color = colors[Math.abs(hashCode(domain)) % colors.length];
     $("#top-panel, #header").css('background-color', color);
 
-    // Remove icons from the left hand menu and strip nbsp's
-    $(".task").each(function() {
-        $("a img", $(this)).remove();
-        $(this).html(function(_, oldHtml) {
-            var replaced = oldHtml.replace(/&nbsp;/g, "", "g");
-            return replaced;
-        });
-    });
-
     // build a callout
     var getCallout = function(message, href) {
         return "<div class='doony-callout doony-callout-info'><a " +
