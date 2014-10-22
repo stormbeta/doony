@@ -509,7 +509,7 @@ jQuery(function($) {
                 wrapper.style.marginRight = "15px";
                 wrapper.style.verticalAlign = "middle";
             // XXX hack, this is for the main page job list
-            } else if (this.classList.contains("icon32x32")) {
+            } else if (this.classList.contains("icon32x32") || this.classList.contains("icon-lg")) {
                 dimension = 24;
                 wrapper.style.marginTop = "4px";
                 wrapper.style.marginLeft = "4px";
