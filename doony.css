@@ -842,6 +842,25 @@ a.yuimenulabel, a.yuimenuitemlabel,
   visibility: hidden;
 }
 
+.icon-health-80plus {
+  content:url('chrome-extension://__MSG_@@extension_id__/img/sun.png');
+}
+
+.icon-health-20to39, .icon-health-40to59, .icon-health-60to79 {
+  content:url('chrome-extension://__MSG_@@extension_id__/img/cloud.png');
+}
+
+/*.icon-stop {*/
+  /*content:url('chrome-extension://__MSG_@@extension_id__/img/x.png');*/
+/*}*/
+/*.icon-user {*/
+  /*content:url('chrome-extension://__MSG_@@extension_id__/img/people.png');*/
+/*}*/
+/*img[alt="Console output"] {*/
+  /*content:url('chrome-extension://__MSG_@@extension_id__/img/console.png');*/
+  /*background-size: contain;*/
+/*}*/
+
 /**
  * XXX For us this is the "Jobs List" plugin. This probably doesn't work well for
  * all use cases.

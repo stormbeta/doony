@@ -7,13 +7,20 @@
 
   "content_scripts": [
     {
-      "__comment__": "You need to add your own URL's here.",
       "matches": [
-        "https://jenkins.ci.cloudbees.com/*",
-        "http://localhost:8080/*"
+        "https://jenkins.ci.cloudbees.com/*"
       ],
-      "css": ["doony.min.css"],
+      "css": ["doony.css"],
       "js": ["src/vendor/jquery-2.0.3.js", "doony.js"]
     }
-   ]
+   ],
+  "web_accessible_resources": [
+    "img/arrow.png",
+    "img/views.png",
+    "img/cloud.png",
+    "img/console.png",
+    "img/sun.png",
+    "img/people.png",
+    "img/x.png"
+  ]
 }

@@ -446,8 +446,21 @@ jQuery(function($) {
         }
     }
 
+//<<<<<<< HEAD
+    // Remove icons from the left hand menu and strip nbsp's
+    //$(".task").each(function() {
+        //$("a img", $(this)).remove();
+        //$(this).html(function(_, oldHtml) {
+            //var replaced = oldHtml.replace(/&nbsp;/g, "", "g");
+            //return replaced;
+        //});
+    //});
+    //var color = colors[Math.abs(hashCode(domain)) % colors.length];
+    //$("#top-panel, #header").css('background-color', color);
+//=======
     var color = colors[Math.abs(hashCode(domain)) % colors.length];
     $("#top-panel, #header").css('background-color', color);
+//>>>>>>> 2f1a43fda976391b0c27b5ea58e1c8fc592147f3
 
     // build a callout
     var getCallout = function(message, href) {
