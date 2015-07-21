@@ -605,6 +605,20 @@ textarea {
   background-image: none !important;
 }
 
+/********************   block styles    ***********************/
+.fixedGridLayout #main-panel {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: 0px;
+  position: relative;
+  width: 80%;
+}
+
+.fixedGridLayout #side-panel {
+  width: 20%;
+}
+
 /********************   top panel styles      ***********************/
 .yui-skin-sam #top-panel {
   background-url: none;
@@ -617,15 +631,15 @@ textarea {
 }
 
 .yui-skin-sam #search-box {
-  font-size: 16px;
+  font-size: 14px;
   background-image: none;
 }
 
 /******************* side panel styles ***********************/
 #tasks {
   margin-top: 5px;
-  font-size: 16px;
-  margin-right: 30px;
+  font-size: 14px;
+  margin-right: 0;
   padding-left: 0;
 }
 
@@ -640,13 +654,13 @@ textarea {
 }
 
 .task a:nth-child(n+1) {
-  padding: 10px 30px 5px 0;
+  padding: 5px 0px 5px 0;
   display: inline-block;
 }
 
 .task a:first-child,
 .task img {
-  display: none;
+  /*display: none;*/
 }
 
 /* make the link target bigger */
@@ -655,11 +669,16 @@ textarea {
 }
 
 #buildHistory .pane-header {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #buildHistory .build-row td:not(.pane-header) {
   padding: 10px 0 10px 10px;
+}
+
+#buildHistory .left-bar {
+  top: 25px;
+  left: 17px;
 }
 
 .doony-canvas {
@@ -672,10 +691,6 @@ textarea {
 
 #buildHistory .build-row {
   border-top: 1px solid #ddd;
-}
-
-#buildHistory .build-row:last-child {
-  display: none;
 }
 
 .healthReport img {
@@ -694,11 +709,11 @@ textarea {
 body > pre,
 #main-panel > pre,
 .console-output {
-  font-size: 14px;
+  font-size: 13px;
   background-color: #111;
   color: #eee;
   padding: 10px 10px 30px;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
 /**
@@ -760,7 +775,7 @@ a.yuimenulabel, a.yuimenuitemlabel,
   padding: 20px 30px 20px 25px;
   border-left: 5px solid #eee;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
 }
 
@@ -781,6 +796,11 @@ a.yuimenulabel, a.yuimenuitemlabel,
 
 .doony-circle {
   border-radius: 50%;
+}
+
+#projectstatus .doony-circle {
+  width: 24px;
+  height: 24px;
 }
 
 .doony-circle-aborted {

@@ -446,17 +446,9 @@ jQuery(function($) {
         }
     }
 
-    var color = colors[Math.abs(hashCode(domain)) % colors.length];
+    //var color = colors[Math.abs(hashCode(domain)) % colors.length];
+    var color = "#6ba64e";
     $("#top-panel, #header").css('background-color', color);
-
-    // Remove icons from the left hand menu and strip nbsp's
-    $(".task").each(function() {
-        $("a img", $(this)).remove();
-        $(this).html(function(_, oldHtml) {
-            var replaced = oldHtml.replace(/&nbsp;/g, "", "g");
-            return replaced;
-        });
-    });
 
     // build a callout
     var getCallout = function(message, href) {
@@ -518,7 +510,7 @@ jQuery(function($) {
                 wrapper.style.marginRight = "15px";
                 wrapper.style.verticalAlign = "middle";
             // XXX hack, this is for the main page job list
-            } else if (this.classList.contains("icon32x32")) {
+            } else if (this.classList.contains("icon-lg")) {
                 dimension = 24;
                 wrapper.style.marginTop = "4px";
                 wrapper.style.marginLeft = "4px";
@@ -551,7 +543,7 @@ jQuery(function($) {
                 canvas.style.marginRight = "15px";
                 canvas.style.verticalAlign = "middle";
             // XXX hack, this is for the main page job list
-            } else if (this.classList.contains("icon32x32")) {
+            } else if (this.classList.contains("icon-lg")) {
                 dimension = 24;
                 canvas.style.marginTop = "4px";
                 canvas.style.marginLeft = "4px";
@@ -621,10 +613,11 @@ jQuery(function($) {
             var jobUrl = getRootJobUrl(window.location.pathname);
             // The build post endpoint doesn't tell you the number of the next
             // build, so get it before we create a build.
-            $.getJSON(jobUrl + 'api/json?depth=1&tree=nextBuildNumber,lastBuild[building]', function(data) {
-                $.post(jobUrl + 'build', function() {
-                    // in case there's an immediate redirect, don't show the
-                    // bar.
+            $.getJSON(jobUrl + 'api/json?depth=1&tree=nextBuildNumber,lastBuild[building],property[parameterDefinitions]', function(data) {
+                //Call correct endpoint for this job - it's different if there's parameters
+                var endpoint = data.property[1].parameterDefinitions != null ? 'buildWithParameters' : 'build';
+                $.post(jobUrl + endpoint, function() {
+                    // in case there's an immediate redirect, don't show the bar.
                     var message = "Build #" + data.nextBuildNumber + " created, you will be redirected when it is ready.";
                     if (JSON.stringify(data) !== "{}" &&
                         'lastBuild' in data &&
