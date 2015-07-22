@@ -606,7 +606,7 @@ textarea {
 }
 
 /********************   block styles    ***********************/
-.fixedGridLayout #main-panel {
+.fixedGridLayout #main-panel, #main-panel {
   padding-left: 15px;
   padding-right: 15px;
   margin-left: auto;
@@ -615,7 +615,7 @@ textarea {
   width: 80%;
 }
 
-.fixedGridLayout #side-panel {
+.fixedGridLayout #side-panel, #side-panel {
   width: 20%;
 }
 
@@ -633,6 +633,11 @@ textarea {
 .yui-skin-sam #search-box {
   font-size: 14px;
   background-image: none;
+}
+
+/*Fixes ugly white box around search input*/
+.searchbox form {
+  background-color: transparent;
 }
 
 /******************* side panel styles ***********************/
