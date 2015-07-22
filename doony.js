@@ -537,13 +537,14 @@ jQuery(function($) {
             // radius should be 12, plus 4 width
             // 16 -> dimension 16, radius 4
             var dimension;
+            console.log(this);
             if (this.getAttribute('width') === "48" || this.getAttribute('width') === "24") {
                 // an overly large ball is scary
                 dimension = this.getAttribute('width') * 0.5 + 8;
                 canvas.style.marginRight = "15px";
                 canvas.style.verticalAlign = "middle";
             // XXX hack, this is for the main page job list
-            } else if (this.classList.contains("icon-lg")) {
+            } else if (this.classList.contains("icon-lg") || this.classList.contains("icon-xlg")) {
                 dimension = 24;
                 canvas.style.marginTop = "4px";
                 canvas.style.marginLeft = "4px";

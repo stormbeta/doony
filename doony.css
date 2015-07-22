@@ -808,6 +808,12 @@ a.yuimenulabel, a.yuimenuitemlabel,
   height: 24px;
 }
 
+.build-caption .doony-circle, .build-caption .doony-canvas {
+  width: 24px !important;
+  height: 24px !important;
+  margin-right: 4px;
+}
+
 .doony-circle-aborted {
   background: #999;
   background-image: -moz-radial-gradient(3px 3px 45deg, circle cover, #ccc 0%, #999 100%);
