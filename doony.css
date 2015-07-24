@@ -829,10 +829,10 @@ a.yuimenulabel, a.yuimenuitemlabel,
 }
 
 .doony-circle-success {
-  background: #397439;
-  background-image: -moz-radial-gradient(3px 3px 45deg, circle cover, #72d472 0%, #397439 100%);
-  background-image: -webkit-radial-gradient(3px 3px, circle cover, #72d472, #397439);
-  background-image: radial-gradient(circle at 3px 3px, #72d472 0%, #397439 100%);
+  background: #3465a4;
+  background-image: -moz-radial-gradient(3px 3px 45deg, circle cover, #9ab2d2 0%, #3465a4 100%);
+  background-image: -webkit-radial-gradient(3px 3px, circle cover, #9ab2d2, #3465a4);
+  background-image: radial-gradient(circle at 3px 3px, #9ab2d2 0%, #3465a4 100%);
 }
 
 .doony-circle-warning {
