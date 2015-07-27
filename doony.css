@@ -609,7 +609,7 @@ textarea {
 .fixedGridLayout #main-panel, #main-panel {
   padding-left: 15px;
   padding-right: 15px;
-  margin-left: auto;
+  margin-left: auto !important; /*non-auto results in overlapping panels*/
   margin-right: 0px;
   position: relative;
   width: 80%;
