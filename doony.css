@@ -1,15 +1,29 @@
-body.yui-skin-sam,
-.yui-skin-sam table,
-.yui-skin-sam form,
-.yui-skin-sam input,
-.yui-skin-sam td,
-.yui-skin-sam th,
-.yui-skin-sam p,
-.yui-skin-sam textarea,
-.yui-skin-sam select {
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+/*Borrowed from atlassian theme*/
+table, form, input, td, th, p, textarea, select {
+  font-family: Arial, sans-serif;
   font-size: 13px;
   color: #333;
+}
+
+#page-body {
+  height: 100%!important;
+}
+
+.row {
+  height: 100%!important;
+}
+
+a:link, a:visited {
+  text-decoration: none;
+  color: #3b73af;
+}
+
+a:hover, a:active {
+  text-decoration: underline;
+}
+
+.row .pane-content {
+  background-color: #f5f5f5;
 }
 
 /*!
@@ -90,11 +104,11 @@ input::-moz-focus-inner {
   cursor: pointer;
   background-color: #f5f5f5;
   *background-color: #e6e6e6;
-  background-image: -moz-linear-gradient(top, white, #e6e6e6);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(white), to(#e6e6e6));
-  background-image: -webkit-linear-gradient(top, white, #e6e6e6);
-  background-image: -o-linear-gradient(top, white, #e6e6e6);
-  background-image: linear-gradient(to bottom, white, #e6e6e6);
+  background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: -o-linear-gradient(top, #ffffff, #e6e6e6);
+  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
   background-repeat: repeat-x;
   border: 1px solid #cccccc;
   *border: 0;
@@ -574,7 +588,7 @@ input[type="button"].btn-block {
 }
 
 /****************     end bootstrap styles        ********************/
-pre, code, .CodeMirror {
+pre, code, .CodeMirror, .yui-skin-sam textarea {
   font-family: Consolas, Monaco, monospace;
 }
 
@@ -588,7 +602,7 @@ input[type="password"],
 select,
 textarea,
 .CodeMirror {
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 3px;
   border: 1px solid #ccc;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -607,28 +621,40 @@ textarea {
 }
 
 /********************   block styles    ***********************/
-#main-panel {
-  width: 80%;
+.fixedGridLayout #main-panel, #main-panel {
+  padding-left: 15px;
+  padding-right: 15px;
+  /*Breaks some pipeline config pages*/
+  /*margin-left: 300px !important;*/
+  margin-right: 0px;
 }
 
-#side-panel {
-  width: 20%;
+#main-panel > .container {
+  display: inline;
+}
+
+body.two-column #side-panel {
+  width: 320px !important;
+}
+
+.fixedGridLayout #side-panel, #side-panel {
+  padding-right: 0px;
+}
+
+#pipeline-box {
+  display: table-cell;
 }
 
 /********************   top panel styles      ***********************/
-.yui-skin-sam #top-panel {
-  background-url: none;
+
+#search-box {
+  font-size: 14px;
   background-image: none;
-  border-bottom: 1px solid #ccc;
+  border: none;
 }
 
-.yui-skin-sam #top-panel img {
+#searchform > a > img {
   display: none;
-}
-
-.yui-skin-sam #search-box {
-  font-size: 16px;
-  background-image: none;
 }
 
 /******************* side panel styles ***********************/
@@ -654,17 +680,27 @@ textarea {
   display: inline-block;
 }
 
+.task a:first-child,
+.task img {
+  /*display: none;*/
+}
+
 /* make the link target bigger */
 #buildHistory .model-link {
-  padding: 10px 16px 10px 0;
+  padding: 6px 16px 0px 0;
 }
 
 #buildHistory .pane-header {
-  font-size: 16px;
+  font-size: 14px;
 }
 
 #buildHistory .build-row td:not(.pane-header) {
   padding: 10px 0 10px 10px;
+}
+
+#buildHistory .left-bar {
+  top: 25px;
+  left: 17px;
 }
 
 .doony-canvas {
@@ -679,32 +715,39 @@ textarea {
   border-top: 1px solid #ddd;
 }
 
-#buildHistory .build-row:last-child {
-  display: none;
-}
-
 .healthReport img {
   vertical-align: top;
   padding-top: 1px;
   display: inline-block;
 }
 
-/*
- * The console output doesn't have an ID on it, sadly, so style its place in
- * the DOM and hope nothing else is affected
- *
- * If you hit consoleText you can view the raw console text, let's style that
- * too.
- */
 body > pre,
 #main-panel > pre,
 .console-output {
-  font-size: 13px;
-  background-color: #111;
+  background-clip: padding-box;
+  background-color: #0F0F0F;
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 1px 10px rgba(0,0,0,0.32);
   color: #eee;
+  font-size: 13px;
   padding: 10px 10px 30px;
-  border-radius: 3px;
+  word-wrap: break-word;
 }
+
+/*Dark background for new Pipeline DSL stage console views*/
+.log-details {
+  background: #011 !important;
+}
+
+.log-details > div > .console-output {
+  color: #fff;
+}
+
+.cbwf-stage-logs .log-details .console-output {
+  background: repeating-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5) 20px, rgba(0, 0, 0, 0.85) 20px, rgba(0, 0, 0, 0.85) 40px) !important;
+}
+
 
 /**
  * Set the link color in console output
@@ -765,7 +808,7 @@ a.yuimenulabel, a.yuimenuitemlabel,
   padding: 20px 30px 20px 25px;
   border-left: 5px solid #eee;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
 }
 
@@ -788,11 +831,22 @@ a.yuimenulabel, a.yuimenuitemlabel,
   border-radius: 50%;
 }
 
+#projectstatus .doony-circle {
+  width: 24px;
+  height: 24px;
+}
+
+.build-caption .doony-circle, .build-caption .doony-canvas {
+  width: 24px !important;
+  height: 24px !important;
+  margin-right: 4px;
+}
+
 .doony-circle-aborted {
   background: #999;
-  background-image: -moz-radial-gradient(3px 3px 45deg, circle cover, #cccccc 0%, #999999 100%);
-  background-image: -webkit-radial-gradient(3px 3px, circle cover, #cccccc, #999999);
-  background-image: radial-gradient(circle at 3px 3px, #cccccc 0%, #999999 100%);
+  background-image: -moz-radial-gradient(3px 3px 45deg, circle cover, #ccc 0%, #999 100%);
+  background-image: -webkit-radial-gradient(3px 3px, circle cover, #ccc, #999);
+  background-image: radial-gradient(circle at 3px 3px, #ccc 0%, #999 100%);
 }
 
 .doony-circle-failure {
@@ -803,10 +857,10 @@ a.yuimenulabel, a.yuimenuitemlabel,
 }
 
 .doony-circle-success {
-  background: #397439;
-  background-image: -moz-radial-gradient(3px 3px 45deg, circle cover, #72d472 0%, #397439 100%);
-  background-image: -webkit-radial-gradient(3px 3px, circle cover, #72d472, #397439);
-  background-image: radial-gradient(circle at 3px 3px, #72d472 0%, #397439 100%);
+  background: #3465a4;
+  background-image: -moz-radial-gradient(3px 3px 45deg, circle cover, #9ab2d2 0%, #3465a4 100%);
+  background-image: -webkit-radial-gradient(3px 3px, circle cover, #9ab2d2, #3465a4);
+  background-image: radial-gradient(circle at 3px 3px, #9ab2d2 0%, #3465a4 100%);
 }
 
 .doony-circle-warning {
@@ -842,25 +896,6 @@ a.yuimenulabel, a.yuimenuitemlabel,
   visibility: hidden;
 }
 
-.icon-health-80plus {
-  content:url('chrome-extension://__MSG_@@extension_id__/img/sun.png');
-}
-
-.icon-health-20to39, .icon-health-40to59, .icon-health-60to79 {
-  content:url('chrome-extension://__MSG_@@extension_id__/img/cloud.png');
-}
-
-/*.icon-stop {*/
-  /*content:url('chrome-extension://__MSG_@@extension_id__/img/x.png');*/
-/*}*/
-/*.icon-user {*/
-  /*content:url('chrome-extension://__MSG_@@extension_id__/img/people.png');*/
-/*}*/
-/*img[alt="Console output"] {*/
-  /*content:url('chrome-extension://__MSG_@@extension_id__/img/console.png');*/
-  /*background-size: contain;*/
-/*}*/
-
 /**
  * XXX For us this is the "Jobs List" plugin. This probably doesn't work well for
  * all use cases.
@@ -889,3 +924,152 @@ a.yuimenulabel, a.yuimenuitemlabel,
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
+
+/*Use vector versions of build health icons*/
+.icon-health-80plus {
+  display: none;
+  content:url("/userContent/sun.svg");
+  box-sizing: border-box;
+}
+
+.icon-health-60to79 {
+  display: none;
+  content:url("/userContent/cloudy.svg");
+  box-sizing: border-box;
+}
+
+.icon-health-40to59 {
+  display: none;
+  content:url("/userContent/overcast.svg");
+  box-sizing: border-box;
+}
+
+.icon-health-20to39 {
+  display: none;
+  content:url("/userContent/showers.svg");
+  box-sizing: border-box;
+}
+
+.icon-health-00to19 {
+  display: none;
+  content:url("/userContent/storm.svg");
+  box-sizing: border-box;
+}
+
+/* Borrowed from atlassian theme */
+.tabBar {
+  overflow: auto;
+  background-color: #f5f5f5;
+  border: solid #ccc;
+  border-top-width: 1px;
+  border-right-width: 0px;
+  border-left-width: 0px;
+  border-bottom-width: 1px;
+  margin: 2px;
+}
+
+.tab {
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.tab.active {
+  border: none!important;
+}
+
+.tabBar [type=radio]:checked ~ a {
+  border: none!important;
+  color: inherit!important;
+  background: #f5f5f5;
+}
+
+.tabBar .tab a.addTab {
+  border: none!important;
+}
+
+.tabBar .tab a {
+  color: #3b73af;
+  position: relative;
+  display: block;
+  border-width: 0px;
+  text-decoration: none;
+  padding: 10px 10px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
+.tabBar .tab a:hover {
+  background-color: #e5e5e5;
+}
+
+#viewList {
+  border: none;
+  margin-bottom: 0px;
+  margin-top: 20px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+#viewList td.inactive a:hover {
+  border-color: #000000;
+}
+
+#viewList td.active {
+  border-bottom: none;
+  vertical-align: middle;
+  font-weight: bold;
+  white-space: nowrap;
+  background: #f2f2f2;
+  background: -moz-linear-gradient(top,#fff 0,#f2f2f2 100%);
+  background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#fff),color-stop(100%,#f2f2f2));
+  background: -webkit-linear-gradient(top,#fff 0,#f2f2f2 100%);
+  background: -o-linear-gradient(top,#fff 0,#f2f2f2 100%);
+  background: -ms-linear-gradient(top,#fff 0,#f2f2f2 100%);
+  background: linear-gradient(top,#fff 0,#f2f2f2 100%);
+  border-color: #ccc;
+  border-width: 1px;
+  color: #333;
+  margin: 0;
+  padding: 10px 10px;
+  text-decoration: none;
+  text-shadow: 0 1px 0 white;
+  height: auto;
+  text-indent: 0;
+  width: auto;
+}
+
+/*From atlassian theme - boxed side panel tasks for easier clicking*/
+/*Modified to also adds boxing to job items*/
+td.pane {
+  background-color: inherit;
+}
+
+.pane-header a:link, .pane-header a:visited {
+  text-decoration: none;
+}
+
+#side-panel .task a + a {
+  width: 89%;
+  padding: 4px;
+}
+
+#side-panel .task a + a:hover,
+tr[id^='job'] > td + td + td > a:hover {
+  background-color: #e6e6e6;
+  text-decoration: none;
+}
+
+tr[id^='job'] > td + td + td > a {
+  padding: 4px;
+  /*Moves drop down button far to the right*/
+  /*display: block;*/
+}
+
+/*Fixes*/
+
+/*Fixes wrapping of job names*/
+.model-link.inside a {
+  white-space: nowrap;
+}
+

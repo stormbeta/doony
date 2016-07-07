@@ -446,21 +446,9 @@ jQuery(function($) {
         }
     }
 
-//<<<<<<< HEAD
-    // Remove icons from the left hand menu and strip nbsp's
-    //$(".task").each(function() {
-        //$("a img", $(this)).remove();
-        //$(this).html(function(_, oldHtml) {
-            //var replaced = oldHtml.replace(/&nbsp;/g, "", "g");
-            //return replaced;
-        //});
-    //});
     //var color = colors[Math.abs(hashCode(domain)) % colors.length];
-    //$("#top-panel, #header").css('background-color', color);
-//=======
-    var color = colors[Math.abs(hashCode(domain)) % colors.length];
+    var color = "#6ba64e";
     $("#top-panel, #header").css('background-color', color);
-//>>>>>>> 2f1a43fda976391b0c27b5ea58e1c8fc592147f3
 
     // build a callout
     var getCallout = function(message, href) {
@@ -522,7 +510,7 @@ jQuery(function($) {
                 wrapper.style.marginRight = "15px";
                 wrapper.style.verticalAlign = "middle";
             // XXX hack, this is for the main page job list
-            } else if (this.classList.contains("icon32x32") || this.classList.contains("icon-lg")) {
+            } else if (this.classList.contains("icon-lg")) {
                 dimension = 24;
                 wrapper.style.marginTop = "4px";
                 wrapper.style.marginLeft = "4px";
@@ -549,13 +537,14 @@ jQuery(function($) {
             // radius should be 12, plus 4 width
             // 16 -> dimension 16, radius 4
             var dimension;
+            console.log(this);
             if (this.getAttribute('width') === "48" || this.getAttribute('width') === "24") {
                 // an overly large ball is scary
                 dimension = this.getAttribute('width') * 0.5 + 8;
                 canvas.style.marginRight = "15px";
                 canvas.style.verticalAlign = "middle";
             // XXX hack, this is for the main page job list
-            } else if (this.classList.contains("icon32x32")) {
+            } else if (this.classList.contains("icon-lg") || this.classList.contains("icon-xlg")) {
                 dimension = 24;
                 canvas.style.marginTop = "4px";
                 canvas.style.marginLeft = "4px";
@@ -593,6 +582,7 @@ jQuery(function($) {
         replaceBouncingFloatyBall("img[src*='grey_anime.gif']", '#999');
         replaceBouncingFloatyBall("img[src*='aborted_anime.gif']", '#999');
         replaceBouncingFloatyBall("img[src*='yellow_anime.gif']", '#f0ad4e');
+        replaceBouncingFloatyBall("img[src*='nobuilt_anime.gif']", '#999');
     }, 10);
     setInterval(function() {
         replaceFloatyBall("img[src*='/aborted.png']", "aborted");
@@ -618,38 +608,6 @@ jQuery(function($) {
     }
 
     if (isJobPage(window.location.pathname)) {
-        var button = document.createElement('button');
-        button.className = "btn btn-primary doony-build";
-        button.innerHTML = "Build Now";
-        $(button).click(function() {
-            var jobUrl = getRootJobUrl(window.location.pathname);
-            // The build post endpoint doesn't tell you the number of the next
-            // build, so get it before we create a build.
-            $.getJSON(jobUrl + 'api/json?depth=1&tree=nextBuildNumber,lastBuild[building]', function(data) {
-                $.post(jobUrl + 'build', function() {
-                    // in case there's an immediate redirect, don't show the
-                    // bar.
-                    var message = "Build #" + data.nextBuildNumber + " created, you will be redirected when it is ready.";
-                    if (JSON.stringify(data) !== "{}" &&
-                        'lastBuild' in data &&
-                        data.lastBuild !== null &&
-                        data.lastBuild.building
-                    ) {
-                        message += " <a href='#' id='doony-clear-build'>Cancel the current build</a>";
-                    }
-                    showButterBar(message, Alert.WARNING);
-                    redirectToNewJobConsole(getJobUrl(window.location.pathname),
-                        data.nextBuildNumber);
-                }).fail(function(jqXHR) {
-                    if (jqXHR.status === 403) {
-                        showButterBar("Cannot create build. Maybe you need to log in or have the 'build' permission.", Alert.ERROR);
-                    } else {
-                        showButterBar("An error occured. Please try again.", Alert.ERROR);
-                    }
-                });
-            });
-        });
-
         $(document).on('click', '#doony-clear-build', function(e) {
             e.preventDefault();
             var jobUrl = getRootJobUrl(window.location.pathname);
@@ -657,17 +615,5 @@ jQuery(function($) {
                 $.post(jobUrl + data.lastBuild.number + '/stop');
             });
         });
-
-        var title = $("#main-panel h1").first();
-        if (title.children("div").length) {
-            title.append(button);
-        } else {
-            title.css('display', 'inline-block');
-            title.after(button);
-        }
     }
-
-    $("#l10n-footer").after("<span class='doony-theme'>Browsing Jenkins with " +
-        "the <a target='_blank' href='https://github.com/kevinburke/doony'>" +
-        "Doony theme</a></span>");
 });
